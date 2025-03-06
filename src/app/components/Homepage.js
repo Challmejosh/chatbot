@@ -173,7 +173,7 @@ const HomePage = () => {
             {/* Join WaitList */}
             <AnimatePresence>
                 {waitList &&
-                <motion.div className=" max-w-full min-w-fit w-[300px] sm:max-w-[500px] sm:w-[400px] shadow-lg fixed top-0  h-[200px] rounded-2xl bg-white z-10  flex flex-col items-center justify-center p-3 "
+                <motion.div className={` max-w-full min-w-fit w-[300px] sm:max-w-[500px] sm:w-[400px] shadow-lg fixed top-0   rounded-2xl bg-white z-10  flex flex-col items-center ${email ? "justify-between h-fit":"justify-center h-fit"} p-3 `}
                 initial={{
                     opacity: 0,
                     scale: 1.2,
@@ -195,8 +195,8 @@ const HomePage = () => {
                 >
                     <div onClick={()=>setWaitList(false)} className="flex w-full cursor-pointer items-center justify-end text-lg font-semibold">X</div>
                     <form onSubmit={handleSubmit} className="flex flex-col gap-3 items-center justify-center w-full">
-                        <input name="email" value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="enter email.." required className="w-full border bg-transparent text-lg py-3 px-5 rounded-lg" />
-                        <button type="submit" className=" cursor-pointer flex bg-blue-50 p-3 rounded-md w-fit items-center justify-center font-semibold"><em>Join Waitlist</em></button>
+                        <input onKeyDown={(e) => e.key === "Enter" && e.preventDefault()} name="email" value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="enter email.." required className="w-full border bg-transparent text-lg py-3 px-5 rounded-lg" />
+                        {email && <button type="submit" className=" cursor-pointer flex bg-blue-600 p-3 rounded-md w-fit items-center justify-center font-semibold"><em>Join Waitlist</em></button>}
                     </form>
                 </motion.div>
                 }
